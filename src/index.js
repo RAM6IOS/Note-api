@@ -7,7 +7,7 @@ app.get('/notes' , (req , res) => {
         if (err) {
             return console.log(err)
         }
-        res.send(data)
+        res.status(200).send(data)
     })
 
 })
