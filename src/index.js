@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('fs');
 const app = express();
+require('./db/mongoosecd')
 
 app.get('/notes' , (req , res) => {
     fs.readFile(__dirname + '/'+ "notes.json", 'utf-8',(err , data) => {
