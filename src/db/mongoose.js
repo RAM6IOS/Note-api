@@ -1,14 +1,15 @@
-/*
-const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://127.0.0.1:27017//notes-api', {
+//const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+
+mongoose.connect('mongodb+srv://iosramzi:ys6BkMJFwqIXvA32@firstapi.mwmdsbo.mongodb.net/?retryWrites=true&w=majority', {
     //useNewUrlParser: true,
     //useCreateIndex: true,
    // useFinAndModify: false
-   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: false,
-  useFindAndModify: false
+   useNewUrlParser: true, useUnifiedTopology: true, 
+   
+  // useCreateIndex: true,
+    //useFindAndModify: false
+    //ys6BkMJFwqIXvA32 
 });
 
-*/
