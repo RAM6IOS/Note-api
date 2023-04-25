@@ -26,6 +26,16 @@ app.listen(3000, () => {
 import express from 'express';
 import fs from 'fs';
 import './db/mongoose.js';
+//import './model/note.js';
+//import { request } from 'http';
+
+import Note from './model/note.js';
+
+
+
+//const note  = request('./model/note.js')
+
+
 
 const app = express();
 
@@ -39,6 +49,19 @@ app.get('/notes', (req, res) => {
     res.status(200).send(data);
   });
 });
+
+app.post('/notes' , (req, res) =>{
+  const note = new Note(req.body)
+  note.save()
+   .then(() => {
+    res.status(200).send(note);
+
+   })
+   .catch((err) => {
+    res.status(500).send(err);
+   })
+
+})
 
 app.listen(3000, () => {
   console.log('Server is up on port 3000');
