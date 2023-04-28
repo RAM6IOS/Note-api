@@ -33,11 +33,13 @@ import Note from './model/note.js';
 
 
 
+
 //const note  = request('./model/note.js')
 
 
 
 const app = express();
+app.use(express.json())
 
 app.get('/notes', (req, res) => {
   const filePath = new URL('./notes.json', import.meta.url).pathname;
