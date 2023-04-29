@@ -41,6 +41,7 @@ import Note from './model/note.js';
 const app = express();
 app.use(express.json())
 
+//reade
 app.get('/notes', async(req, res) => {
   try { 
   const notes = await Note.find()
@@ -63,6 +64,7 @@ app.get('/notes', async(req, res) => {
   */
 });
 
+//create
 app.post('/notes' , async(req, res) =>{
   const note = new Note(req.body)
    try{
@@ -73,6 +75,8 @@ app.post('/notes' , async(req, res) =>{
     res.status(400).send(err);
 
    }
+
+   
   
   /*
   note.save()
@@ -85,6 +89,22 @@ app.post('/notes' , async(req, res) =>{
    })
 */
 })
+//update
+app.patch('/notes/:id' , async (req,res) => {
+
+  try{
+    const note = await Note.findById(req.params.id)
+    note.note = req.body.note
+    await note.save()
+    res.status(201).send(note);
+  }
+  catch(err){
+    res.status(404).send(err);
+  }
+
+})  
+
+//delete
 
 app.listen(3000, () => {
   console.log('Server is up on port 3000');
