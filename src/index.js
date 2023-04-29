@@ -106,6 +106,18 @@ app.patch('/notes/:id' , async (req,res) => {
 
 //delete
 
+app.delete('/notes/:id' , async (req,res) => {
+
+  try{
+    const note = await Note.findByIdAndDelete(req.params.id)
+    res.send("new delete note");
+  }
+  catch(err){
+    res.status(500).send(err);
+  }
+
+})  
+
 app.listen(3000, () => {
   console.log('Server is up on port 3000');
 });
