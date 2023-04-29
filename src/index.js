@@ -41,7 +41,17 @@ import Note from './model/note.js';
 const app = express();
 app.use(express.json())
 
-app.get('/notes', (req, res) => {
+app.get('/notes', async(req, res) => {
+  try { 
+  const notes = await Note.find()
+     // res.send.(notes)
+     res.send(notes)
+  } 
+  catch(err){
+    res.status(500).send(err)
+
+  }
+  /*
   const filePath = new URL('./notes.json', import.meta.url).pathname;
   fs.readFile(filePath, 'utf-8', (err, data) => {
     if (err) {
@@ -50,10 +60,21 @@ app.get('/notes', (req, res) => {
     }
     res.status(200).send(data);
   });
+  */
 });
 
-app.post('/notes' , (req, res) =>{
+app.post('/notes' , async(req, res) =>{
   const note = new Note(req.body)
+   try{
+    await note.save()
+    res.status(201).send(note);
+   }
+   catch(err){
+    res.status(400).send(err);
+
+   }
+  
+  /*
   note.save()
    .then(() => {
     res.status(200).send(note);
@@ -62,7 +83,7 @@ app.post('/notes' , (req, res) =>{
    .catch((err) => {
     res.status(500).send(err);
    })
-
+*/
 })
 
 app.listen(3000, () => {
