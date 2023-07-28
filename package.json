@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "fs": "^0.0.1-security",
-    "mongodb": "^5.3.0",
+    "mongodb": "^5.7.0",
     "mongoose": "^7.0.4"
   },
   "name": "motes-api",

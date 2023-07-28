@@ -31,15 +31,15 @@ import './db/mongoose.js';
 
 import Note from './model/note.js';
 
-
+const app = express();
+app.use(express.json())
 
 
 //const note  = request('./model/note.js')
 
 
 
-const app = express();
-app.use(express.json())
+
 
 //reade
 app.get('/notes', async(req, res) => {
