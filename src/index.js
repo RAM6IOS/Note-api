@@ -1,27 +1,3 @@
-//const express = require('express');
-/*
-import express from 'express';
-//const fs = require('fs');
-import fs from 'fs';
-const app = express();
-//
-//require('./db/mongoose')
-import './db/mongoose.js';
-
-app.get('/notes' , (req , res) => {
-    fs.readFile(__dirname + '/'+ "notes.json", 'utf-8',(err , data) => {
-        if (err) {
-            return console.log(err)
-        }
-        res.status(200).send(data)
-    })
-
-})
-
-app.listen(3000, () => {
-    console.log("Server is up on port 3000")
-})
-*/
 
 import express from 'express';
 import fs from 'fs';
@@ -34,13 +10,6 @@ import Note from './model/note.js';
 const app = express();
 app.use(express.json())
 
-
-//const note  = request('./model/note.js')
-
-
-
-
-
 //reade
 app.get('/notes', async(req, res) => {
   try { 
@@ -52,16 +21,7 @@ app.get('/notes', async(req, res) => {
     res.status(500).send(err)
 
   }
-  /*
-  const filePath = new URL('./notes.json', import.meta.url).pathname;
-  fs.readFile(filePath, 'utf-8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error reading file');
-    }
-    res.status(200).send(data);
-  });
-  */
+  
 });
 
 //create
@@ -76,25 +36,15 @@ app.post('/notes' , async(req, res) =>{
 
    }
 
-   
-  
-  /*
-  note.save()
-   .then(() => {
-    res.status(200).send(note);
-
-   })
-   .catch((err) => {
-    res.status(500).send(err);
-   })
-*/
 })
+
 //update
 app.patch('/notes/:id' , async (req,res) => {
 
   try{
     const note = await Note.findById(req.params.id)
     note.note = req.body.note
+
     await note.save()
     res.status(201).send(note);
   }
